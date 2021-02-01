@@ -13,6 +13,12 @@ import {
   userDetailsReducer,
   useruPdateProfileReducer,
 } from './reducers/userReducers'
+import {
+  orderCreatedReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+  orderListMyReducer,
+} from './reducers/orderReducers'
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -22,6 +28,10 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: useruPdateProfileReducer,
+  orderCreate: orderCreatedReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer,
+  orderListMy: orderListMyReducer,
 })
 
 // if there is a cartItems in local storage then parse it to object , else cartItemsFromStorage = empty array
@@ -33,8 +43,15 @@ const userInfoFromStorge = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null
 
+const shippingAddressFromStorge = localStorage.getItem('shippingAddress')
+  ? JSON.parse(localStorage.getItem('shippingAddress'))
+  : {}
+
 const initalState = {
-  cart: { cartItems: cartItemsFromStorge },
+  cart: {
+    cartItems: cartItemsFromStorge,
+    shippingAddress: shippingAddressFromStorge,
+  },
   userLogin: { userInfo: userInfoFromStorge },
 }
 const middleWare = [thunk]
