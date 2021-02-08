@@ -1,6 +1,7 @@
 import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
+import morgan from 'morgan'
 import { notFound, errorHandler } from './middleware/errorMiddleWare.js'
 import connectDB from './config/db.js'
 import productRoutes from './routes/productRoutes.js'
@@ -13,6 +14,10 @@ dotenv.config()
 connectDB()
 
 const app = express()
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
 // I have to add this line to get the data in req.body in post requsts
 app.use(express.json())
 

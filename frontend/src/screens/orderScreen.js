@@ -6,7 +6,7 @@ import Loader from '../components/Loader'
 import { Link } from 'react-router-dom'
 import { getOrderDetails, deliverOrder } from '../actions/orderAction'
 
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id
   const dispatch = useDispatch()
 
@@ -31,8 +31,11 @@ const OrderScreen = ({ match }) => {
   }
 
   useEffect(() => {
+    if (!userInfo) {
+      history.push('/login')
+    }
     dispatch(getOrderDetails(orderId))
-  }, [dispatch, orderId, successDeliver])
+  }, [dispatch, orderId, successDeliver, history, userInfo])
 
   const deliverHandler = () => {
     dispatch(deliverOrder(order))
