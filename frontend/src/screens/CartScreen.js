@@ -98,6 +98,11 @@ const CartScreen = ({ match, location, history }) => {
               <Button
                 type='button'
                 className='btn-block'
+                style={{
+                  backgroundColor: 'rgb(63 57 63)',
+                  border: '1px solid #B375B0 ',
+                  borderRadius: '20px',
+                }}
                 disabled={cartItems.length === 0}
                 onClick={checkOutHandler}
               >

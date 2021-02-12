@@ -61,7 +61,16 @@ const ProductScreen = ({ history, match }) => {
 
   return (
     <>
-      <Link className='btn btn-light my-3' to='/'>
+      <Link
+        style={{
+          backgroundColor: 'rgb(63 57 63)',
+          color: 'white',
+          border: '2px solid pink',
+          borderRadius: '10px',
+        }}
+        className='btn my-3 btn-light'
+        to='/'
+      >
         Go Back
       </Link>
       {loading ? (
@@ -140,6 +149,9 @@ const ProductScreen = ({ history, match }) => {
                     <Button
                       onClick={addToCartHandler}
                       className='btn-block'
+                      style={{
+                        backgroundColor: 'rgb(63 57 63)',
+                      }}
                       type='button'
                       disabled={product.countInStock === 0}
                     >
@@ -195,7 +207,13 @@ const ProductScreen = ({ history, match }) => {
                           onChange={(e) => setComment(e.target.value)}
                         ></Form.Control>
                       </Form.Group>
-                      <Button type='submit' variant='primary'>
+                      <Button
+                        type='submit'
+                        variant='primary'
+                        style={{
+                          backgroundColor: 'rgb(63 57 63)',
+                        }}
+                      >
                         Submit
                       </Button>
                     </Form>

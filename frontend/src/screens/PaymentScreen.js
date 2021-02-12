@@ -42,7 +42,15 @@ const PaymentScreen = ({ history }) => {
             ></Form.Check>
           </Col>
         </Form.Group>
-        <Button type='submit' variant='primary'>
+        <Button
+          type='submit'
+          style={{
+            backgroundColor: 'rgb(63 57 63)',
+            color: 'white',
+            border: '2px solid pink',
+            borderRadius: '10px',
+          }}
+        >
           Continue
         </Button>
       </Form>

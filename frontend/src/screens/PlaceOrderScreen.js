@@ -140,6 +140,10 @@ const PlaceOrderScreen = ({ history }) => {
 
               <ListGroup.Item>
                 <Button
+                  style={{
+                    backgroundColor: 'rgb(63 57 63)',
+                    borderRadius: '10px',
+                  }}
                   type='button'
                   className='btn-block'
                   disabled={cart.cartItems === 0}
