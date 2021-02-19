@@ -20,7 +20,6 @@ const ProductEditScreen = ({ match, history }) => {
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState('')
-  const [uploading, setUploading] = useState(false)
   const [imageURL, setImageURL] = useState('')
 
   const dispatch = useDispatch()
@@ -53,7 +52,7 @@ const ProductEditScreen = ({ match, history }) => {
       } else {
         setName(product.name)
         setPrice(product.price)
-        // setImageURL(product.image)
+        setImageURL(product.image)
         setBrand(product.brand)
         setCategory(product.category)
         setCountInStock(product.countInStock)
@@ -61,28 +60,6 @@ const ProductEditScreen = ({ match, history }) => {
       }
     }
   }, [dispatch, history, product, productId, successUpdate])
-
-  // const uploadFileHandler = async (e) => {
-  //   const file = e.target.files[0]
-  //   const formDate = new FormData()
-  //   formDate.append('image', file)
-  //   setUploading(true)
-
-  //   try {
-  //     const config = {
-  //       headers: {
-  //         'Content-Type': 'multipart/form-data',
-  //       },
-  //     }
-  //     const { data } = await axios.post('/api/upload', formDate, config)
-
-  //     setImage(data)
-  //     setUploading(false)
-  //   } catch (error) {
-  //     console.log(error)
-  //     setUploading(false)
-  //   }
-  // }
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -150,7 +127,6 @@ const ProductEditScreen = ({ match, history }) => {
               ) : (
                 <img height='100' width='100' src={imageURL} alt={imageURL} />
               )}
-              {uploading && <Loader />}
             </Form.Group>
 
             <Form.Group controlId='brand'>

@@ -20,6 +20,7 @@ const getProducts = asyncHandler(async (req, res) => {
 
   const count = await Product.countDocuments({ ...keword })
   const products = await Product.find({ ...keword })
+    .sort({ updatedAt: 'desc' })
     .limit(pageSize)
     .skip(pageSize * (page - 1))
 

@@ -30,7 +30,7 @@ const CartScreen = ({ match, location, history }) => {
     history.push('/login?redirect=shipping')
   }
   return (
-    <Row>
+    <Row className='my-5'>
       <Col md={8}>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (

@@ -67,8 +67,10 @@ const ProductScreen = ({ history, match }) => {
           color: 'white',
           border: '2px solid pink',
           borderRadius: '10px',
+          marginTop: '50px',
+          marginBottom: '10px',
         }}
-        className='btn my-3 btn-light'
+        className='btn btn-light'
         to='/'
       >
         Go Back
