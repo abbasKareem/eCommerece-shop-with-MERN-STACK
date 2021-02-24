@@ -20,6 +20,9 @@ import {
   ORDER_DELIVER_REQUEST,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_RESET,
+  ORDER_DELETE_REQUEST,
+  ORDER_DELETE_SUCCESS,
+  ORDER_DELETE_FAIL,
 } from '../constants/orderConstants'
 
 // eslint-disable-next-line no-unused-vars
@@ -162,6 +165,28 @@ export const orderListReducer = (state = { orders: [] }, action) => {
         orders: action.payload,
       }
     case ORDER_LIST_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    default:
+      return state
+  }
+}
+
+// eslint-disable-next-line no-unused-vars
+export const orderDeleteReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ORDER_DELETE_REQUEST:
+      return {
+        loading: true,
+      }
+    case ORDER_DELETE_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      }
+    case ORDER_DELETE_FAIL:
       return {
         loading: false,
         error: action.payload,

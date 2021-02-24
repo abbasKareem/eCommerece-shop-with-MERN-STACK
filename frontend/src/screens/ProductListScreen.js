@@ -12,6 +12,7 @@ import {
   createProduct,
 } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
+import { app } from '../base'
 
 const ProductListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1
@@ -38,6 +39,9 @@ const ProductListScreen = ({ history, match }) => {
     product: createdProduct,
   } = productCreate
 
+  const listDetails = useSelector((state) => state.productDetails)
+  const { product } = listDetails
+
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET })
     if (!userInfo.isAdmin) {
@@ -59,8 +63,15 @@ const ProductListScreen = ({ history, match }) => {
     pageNumber,
   ])
 
-  const deleteHandler = (id) => {
-    if (window.confirm('Are you sure you want delete this product?')) {
+  const deleteHandler = async (id) => {
+    if (window.confirm('هل تريد حذف المنتج؟')) {
+      const storageRef = app
+        .storage()
+        .ref()
+        .child(product.image)
+        .name.split('?')
+      const imageName = storageRef[0]
+      await app.storage().ref().child(imageName).delete()
       dispatch(deleteProduct(id))
     }
   }
@@ -95,7 +106,7 @@ const ProductListScreen = ({ history, match }) => {
           <Table striped bordered hover responsive className='tabel-sm'>
             <thead>
               <tr>
-                <th>ID</th>
+                <th>PHOTO</th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>CATEGORY</th>
@@ -106,7 +117,15 @@ const ProductListScreen = ({ history, match }) => {
             <tbody>
               {products.map((product) => (
                 <tr key={product._id}>
-                  <td>{product._id}</td>
+                  <td>
+                    {' '}
+                    <img
+                      width='50'
+                      height='50'
+                      alt={product.name}
+                      src={product.image}
+                    />{' '}
+                  </td>
                   <td>{product.name}</td>
                   <td>${product.price}</td>
                   <td>{product.category}</td>

@@ -28,6 +28,7 @@ import {
   orderListMyReducer,
   orderListReducer,
   orderDeliverReducer,
+  orderDeleteReducer,
 } from './reducers/orderReducers'
 
 const reducer = combineReducers({
@@ -52,6 +53,7 @@ const reducer = combineReducers({
   orderDeliver: orderDeliverReducer,
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
+  delettOrder: orderDeleteReducer,
 })
 
 // if there is a cartItems in local storage then parse it to object , else cartItemsFromStorage = empty array

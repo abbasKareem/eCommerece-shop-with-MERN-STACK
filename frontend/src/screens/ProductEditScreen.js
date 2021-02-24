@@ -1,4 +1,3 @@
-// import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
@@ -52,7 +51,7 @@ const ProductEditScreen = ({ match, history }) => {
       } else {
         setName(product.name)
         setPrice(product.price)
-        setImageURL(product.image)
+        setImageURL('')
         setBrand(product.brand)
         setCategory(product.category)
         setCountInStock(product.countInStock)
